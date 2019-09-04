@@ -1,0 +1,42 @@
+html {
+  box-sizing: border-box;
+}
+body {
+  margin: auto;
+  text-align: center;
+  width: 600px;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 100;
+}
+a {
+  color: rgba(65, 124, 129, 1);
+}
+body {
+  background: #c1c1c1;
+  color: rgba(1, 47, 52, 1);
+}
+.primaryColorLightest {
+  color: rgba(104, 151, 155, 1);
+}
+.primaryColorLight {
+  color: rgba(65, 124, 129, 1);
+}
+.primaryColorMid {
+  color: rgba(35, 98, 103, 1);
+}
+.primaryColorDark {
+  color: rgba(14, 72, 78, 1);
+}
+.primaryColorDarkest {
+  color: rgba(1, 47, 52, 1);
+}
+.section {
+  padding: 20px;
+}
