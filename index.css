@@ -13,16 +13,23 @@ body {
 }
 body {
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  font-weight: 100;
+  font-weight: 300;
+}
+body h1 {
+  font-weight: 300;
 }
 a {
   color: rgba(65, 124, 129, 1);
+  text-decoration: none;
+}
+a:hover {
+  color: rgba(14, 72, 78, 1);
 }
 .libraries a {
   display: block;
 }
 body {
-  background: #c1c1c1;
+  background: #eee;
   color: rgba(1, 47, 52, 1);
 }
 .primaryColorLightest {
