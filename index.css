@@ -18,6 +18,9 @@ body {
 a {
   color: rgba(65, 124, 129, 1);
 }
+.libraries a {
+  display: block;
+}
 body {
   background: #c1c1c1;
   color: rgba(1, 47, 52, 1);
