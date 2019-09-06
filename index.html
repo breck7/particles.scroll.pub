@@ -4,10 +4,25 @@
     <meta charset="UTF-8" />
     <link rel="stylesheet" type="text/css" href="index.css" />
     <title>Tree Notation</title>
+    <script>
+      const changeImage = event => {
+        if (!event.target.href)
+          return true
+        event.preventDefault()
+        document.getElementById("heroImage").src = event.target.href
+        location.hash = encodeURIComponent(event.target.href)
+      }
+    </script>
   </head>
   <body>
     <h1>Tree Notation</h1>
-    <img src="demos/helloWorld3D.svg" title="Code you could hold in your hand" />
+    <img id="heroImage" src="demos/helloWorld3D.svg" title="Code you could hold in your hand" />
+    <p onclick="changeImage(event)">
+      What is Tree Notation?<br />
+      <a href="demos/helloWorld3D.svg">Hello World</a> | <a href="demos/noSyntaxChars.svg">No Syntax</a> | <a href="demos/paper.svg">Works Offline</a> |
+      <a href="demos/programWithPictures.svg">Program With Pictures</a> |
+      <a href="demos/programsAreAlsoSpreadsheets.svg">Programs Are Spreadsheets</a>
+    </p>
     <p>
       <a href="http://jtree.treenotation.org/designer/">Build a Tree Language</a> | <a href="http://jtree.treenotation.org/sandbox/">Tree Notation Sandbox</a>
     </p>
@@ -36,5 +51,11 @@
     <p>
       <a href="https://lab.treenotation.org"><img src="treeNotationLab.png" title="Tree Notation Lab"/></a>
     </p>
+    <script>
+      const url = new URL(document.location.href)
+      if (url.hash && url.hash.length > 1) {
+        document.getElementById("heroImage").src = decodeURIComponent(url.hash).substr(1)
+      }
+    </script>
   </body>
 </html>

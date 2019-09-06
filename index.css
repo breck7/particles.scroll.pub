@@ -25,6 +25,9 @@ a {
 a:hover {
   color: rgba(14, 72, 78, 1);
 }
+#heroImage {
+  height: 400px;
+}
 .libraries a {
   display: block;
 }
