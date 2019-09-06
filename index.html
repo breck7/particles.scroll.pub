@@ -6,8 +6,7 @@
     <title>Tree Notation</title>
     <script>
       const changeImage = event => {
-        if (!event.target.href)
-          return true
+        if (!event.target.href) return true
         event.preventDefault()
         document.getElementById("heroImage").src = event.target.href
         location.hash = encodeURIComponent(event.target.href)
@@ -18,10 +17,12 @@
     <h1>Tree Notation</h1>
     <img id="heroImage" src="demos/helloWorld3D.svg" title="Code you could hold in your hand" />
     <p onclick="changeImage(event)">
-      What is Tree Notation?<br />
-      <a href="demos/helloWorld3D.svg">Hello World</a> | <a href="demos/noSyntaxChars.svg">No Syntax</a> | <a href="demos/paper.svg">Works Offline</a> |
-      <a href="demos/programWithPictures.svg">Program With Pictures</a> |
-      <a href="demos/programsAreAlsoSpreadsheets.svg">Programs Are Spreadsheets</a>
+      Why Tree Notation?<br />
+      <a href="demos/helloWorld3D.svg">Code You Can Hold</a> | <a href="demos/noSyntaxChars.svg">No Syntax</a> | <a href="demos/paper.svg">Works Offline</a> |
+      <a href="demos/programWithPictures.svg">Program With Pictures</a> | <a href="demos/cleanData.svg">Bug Free Data</a> |
+      <a href="demos/programsAreAlsoSpreadsheets.svg">Programs Are Spreadsheets</a> |
+      <a href="demos/complexityCanBeCounted.svg">We Can Now Count Complexity</a> |
+      <a href="demos/aFutureWithoutCompilers.svg">A Future Without Compilers?</a>
     </p>
     <p>
       <a href="http://jtree.treenotation.org/designer/">Build a Tree Language</a> | <a href="http://jtree.treenotation.org/sandbox/">Tree Notation Sandbox</a>
