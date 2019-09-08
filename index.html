@@ -2,28 +2,190 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" type="text/css" href="index.css" />
+    <style>
+      html {
+        box-sizing: border-box;
+      }
+      body {
+        margin: auto;
+        text-align: center;
+        width: 800px;
+      }
+      *,
+      *:before,
+      *:after {
+        box-sizing: inherit;
+      }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        font-weight: 300;
+      }
+      body h1 {
+        font-weight: 300;
+      }
+      a {
+        color: rgba(65, 124, 129, 1);
+        text-decoration: none;
+      }
+      a:hover {
+        color: rgba(14, 72, 78, 1);
+      }
+
+      #logo {
+        width: 100px;
+      }
+      .libraries a,
+      #slideHolder a {
+        display: block;
+      }
+      body {
+        background: #eee;
+        color: rgba(1, 47, 52, 1);
+      }
+      .primaryColorLightest {
+        color: rgba(104, 151, 155, 1);
+      }
+      .primaryColorLight {
+        color: rgba(65, 124, 129, 1);
+      }
+      .primaryColorMid {
+        color: rgba(35, 98, 103, 1);
+      }
+      .primaryColorDark {
+        color: rgba(14, 72, 78, 1);
+      }
+      .primaryColorDarkest {
+        color: rgba(1, 47, 52, 1);
+      }
+      .section {
+        padding: 20px;
+      }
+      #mainTable {
+        margin-top: 15px;
+        margin-bottom: 30px;
+      }
+      .leftCol {
+        width: 290px;
+        text-align: left;
+        border-right: 1px solid #bbb;
+      }
+      .rightCol {
+        text-align: left;
+        width: 500px;
+        padding-left: 30px;
+      }
+      #heroHolder {
+        height: 500px;
+        text-align: center;
+      }
+      #heroImage {
+        width: 100%;
+      }
+      #slideHolder a.selected {
+        font-weight: bold;
+      }
+      #social a {
+        opacity: 0.8;
+      }
+      #social a:hover {
+        opacity: 0.9;
+      }
+      #social a:click {
+        opacity: 1;
+      }
+      #caption {
+        padding-right: 10px;
+      }
+    </style>
     <title>Tree Notation</title>
+    <script src="jtree.browser.js"></script>
     <script>
+      const data = new jtree.TreeNode(`helloWorld3D
+ title Hello world
+ description Tree Notation is a simple new notation for writing code and data. Tree Notation brings code to life, by giving it 2-dimensions. Tree Notation is code you could hold.
+noSyntaxChars
+ title No Syntax
+ description Say goodbye to cryptic syntax characters! Tree Notation does away with those. It turns out, there is nothing that you can do with syntax characters that you can't do more easily with simple spacing.
+createLanguages
+ title Create New Languages
+ description Tree Notation is a basic building block that you can build higher level Tree Languages on top of. <a href="http://jtree.treenotation.org/designer/">Try it now</a>.
+paper
+ title Works Offline
+ description You can use Tree Notation with pen and paper too. <a href="https://en.wikipedia.org/wiki/Graph_paper">Graph paper</a> works great. For example, healthcare providers can take notes directly in Tree Notation. This can make it easier for lab scientists to analyze that health data later on.
+programWithPictures
+ title Program With Pictures
+ description Programming languages no longer have to be constrained to words. You can design new Tree Languages that use <a href="https://github.com/treenotation/jtree/tree/master/langs/poop">pictures instead of words</a>.
+cleanData
+ title Bug Free Data
+ description We no longer need to store our data in error prone CSV, XML, or JSON. Tree Notation gives us a simpler, more powerful encoding for data with lots of new advanced features.
+programsAreAlsoSpreadsheets
+ title Programs Are Spreadsheets
+ description With Tree Notation, you think of code as being in rows and cells, just like in spreadsheets. Future spreadsheet applications will save their files in Tree Languages.
+complexityCanBeCounted
+ title We Can Now Count Complexity
+ description Tree Notation allows you to easily count the complexity of a given piece of code or data. With Tree Notation, you can objectively decide which thing is simpler than another. You can count complexity in "Tree Units" like lines, edges, words, cells, repeats and cellBits. You can count complexity starting from 0's and 1's or from a higher level. <a href="https://github.com/treenotation/jtree/blob/master/papers/paper3/countingComplexity.pdf">Read more</a>.
+aFutureWithoutCompilers
+ title A Future Without Compilers?
+ description In the decades ahead, Tree Notation will change the way we think about computers. Tree Notation is like a 2-dimensional binary and will be used at the lowest levels of computing. We will see new types of Tree Machines that operate very differently than the computers we have today.`)
       const changeImage = event => {
         if (!event.target.href) return true
         event.preventDefault()
-        document.getElementById("heroImage").src = event.target.href
-        location.hash = encodeURIComponent(event.target.href)
+        const id = event.target.value
+        loadSlide(id)
+        location.hash = id
+      }
+      const loadSlide = id => {
+        const node = data.getNode(id)
+        if (!node) return true
+        const sel = document.getElementsByClassName("selected")[0]
+        if (sel) sel.classList.remove("selected")
+        document.getElementById(id + "Link").classList.add("selected")
+        document.getElementById("heroImage").src = `demos/${id}.svg`
+        document.getElementById("caption").innerHTML = node.get("description") || ""
+      }
+      const start = () => {
+        data.forEach(node => {
+          const id = node.getLine()
+          const aTag = document.createElement("A")
+          aTag.appendChild(document.createTextNode(node.get("title")))
+          aTag.href = `demos/${id}.svg`
+          aTag.value = id
+          aTag.id = id + "Link"
+          document.getElementById("slideHolder").appendChild(aTag)
+        })
+
+        const url = new URL(document.location.href)
+        if (url.hash && url.hash.length > 1) {
+          loadSlide(url.hash.substr(1))
+        } else {
+          loadSlide("helloWorld3D")
+        }
       }
     </script>
   </head>
   <body>
-    <h1>Tree Notation</h1>
-    <img id="heroImage" src="demos/helloWorld3D.svg" title="Code you could hold in your hand" />
-    <p onclick="changeImage(event)">
-      Why Tree Notation?<br />
-      <a href="demos/helloWorld3D.svg">Code You Can Hold</a> | <a href="demos/noSyntaxChars.svg">No Syntax</a> | <a href="demos/paper.svg">Works Offline</a> |
-      <a href="demos/programWithPictures.svg">Program With Pictures</a> | <a href="demos/cleanData.svg">Bug Free Data</a> |
-      <a href="demos/programsAreAlsoSpreadsheets.svg">Programs Are Spreadsheets</a> |
-      <a href="demos/complexityCanBeCounted.svg">We Can Now Count Complexity</a> |
-      <a href="demos/aFutureWithoutCompilers.svg">A Future Without Compilers?</a>
-    </p>
+    <table id="mainTable">
+      <tr>
+        <td valign="top" class="leftCol">
+          <a href="index.html">
+            <img id="logo" src="demos/helloWorld3D.svg" title="Code you could hold in your hand" />
+          </a>
+        </td>
+        <td valign="top" class="rightCol">
+          <h1>Tree Notation</h1>
+        </td>
+      </tr>
+      <tr>
+        <td valign="top" class="leftCol">
+          <p onclick="changeImage(event)" id="slideHolder"></p>
+          <p id="caption"></p>
+        </td>
+        <td valign="center" class="rightCol" id="heroHolder">
+          <img id="heroImage" src="demos/helloWorld3D.svg" title="Code you could hold in your hand" />
+        </td>
+      </tr>
+    </table>
+
     <p>
       <a href="http://jtree.treenotation.org/designer/">Build a Tree Language</a> | <a href="http://jtree.treenotation.org/sandbox/">Tree Notation Sandbox</a>
     </p>
@@ -34,7 +196,7 @@
     <p>
       <a href="http://jtree.treenotation.org/faq.html">FAQ</a>
     </p>
-    <p>
+    <p id="social">
       <a href="https://www.reddit.com/r/treenotation"><img src="reddit.png" title="Tree Notation Subreddit"/></a>
       <a href="https://github.com/treenotation"><img src="github.png" title="Tree Notation on GitHub"/></a>
     </p>
@@ -59,10 +221,7 @@
     </p>
     <a style="display: block; position: absolute; top: 0; right: 0;" href="https://github.com/treenotation/treenotation.org"><img src="github-fork.svg"/></a>
     <script>
-      const url = new URL(document.location.href)
-      if (url.hash && url.hash.length > 1) {
-        document.getElementById("heroImage").src = decodeURIComponent(url.hash).substr(1)
-      }
+      start()
     </script>
   </body>
 </html>
