@@ -1,1 +1,1 @@
-linkinator -r https://treenotation.org
+linkinator -r https://notation.scroll.pub
