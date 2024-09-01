@@ -1,1 +1,1 @@
-linkinator -r https://notation.scroll.pub
+linkinator -r https://particles.scroll.pub
