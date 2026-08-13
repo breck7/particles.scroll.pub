@@ -1,1 +1,1 @@
-linkinator -r https://particles.scroll.pub
+linkinator -r https://particles.scroll.surf
